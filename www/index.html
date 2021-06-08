@@ -23,15 +23,21 @@
             loadScriptSync("js/codec.js");
         </script>
         <style>
+            #log {
+                opacity: 1;
+                transition: 1s opacity;
+                text-align: center;
+                font-size:12px;
+            }
             /* Hide scrollbar for Chrome, Safari and Opera */
             body::-webkit-scrollbar {
-            display: none;
+                display: none;
             }
 
             /* Hide scrollbar for IE, Edge and Firefox */
             body {
-            -ms-overflow-style: none;  /* IE and Edge */
-            scrollbar-width: none;  /* Firefox */
+                -ms-overflow-style: none;  /* IE and Edge */
+                scrollbar-width: none;  /* Firefox */
             }
         </style>
     </head>
@@ -39,17 +45,23 @@
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-        <div id = "usb_control" class="container m-2" style="height: 300px">
-            <div class="field is-grouped is-grouped-centered" style="margin: auto; padding: 100px;">
-                <img src="USB_icon.svg" style="height: 20px;" class="is-rounded m-2">
+        <div id = "control_panel" class="container" style="height: 375px;">
+            <div id = "usb_tab" class="is-hidden field is-grouped is-grouped-centered pt-6">
+                <img src="USB_icon.svg" style="height: 20px;" class="m-2">
                 <button class="button" id="webcam_indicator" disabled>USB</button>
-            </div>    
-        </div>
-
-        <div id="codec_form" class="m-2 p-5">
-
-            <form class="container" id="authenticate" style="width: 300px;">
-
+            </div>
+            <div id = "make_call_tab" class="is-hidden field is-grouped is-grouped-centered pt-6">
+                <input id="sipuri" class="input m-1" type="email" placeholder="e.g. user@domain.com" style="width: 250px;">
+                <button class="button m-1 is-success" id="dial_button">Dial</button>
+            </div>
+            <div id = "in_call_tab" class="is-hidden field is-grouped is-grouped-centered pt-6">
+                <button class="button m-1 is-light" id="mute_button">Mute</button>
+                <button class="button m-1 is-danger" id="hangup_button">Hangup</button>
+            </div>
+            <div id = "accept_call_tab" class="is-hidden field is-grouped is-grouped-centered pt-6">
+                <button class="button m-1 is-success" id="accept_button">Accept</button>
+            </div>
+            <form class="container pt-6" id="authenticate" style="width: 300px;">
                 <div class="field">
                     <label class="label">Device IP</label>
                     <div class="control">
@@ -78,7 +90,10 @@
                 </div>
             
                 
-            </form>
+            </form>    
+        </div>
+
+
 
         </div>  
 

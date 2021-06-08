@@ -1,22 +1,25 @@
 #!/usr/bin/env node
 const path = require('path');
-const { webkit, chromium } = require('playwright');
+const { chromium } = require('playwright');
 
 (async () => {
   
-    /*
+    ///*
     const browser = await chromium.launch({
+        //ignoreDefaultArgs: true,
         headless: false,
+        devtools: false,
         args: [
             '--app=http://localhost:8081',
             '--window-size=640,480',
+            '--silent',
             //'--ignore-certificate-errors'
         ]
     });
-    */
+    //*/
    
   
-    ///*
+    /*
     const browser = await webkit.launch({headless: false});
     const page = await browser.newPage();
     await page.setViewportSize({
@@ -30,7 +33,7 @@ const { webkit, chromium } = require('playwright');
     browser.on('disconnected', (e) => {
         console.log(`Disconnected ${JSON.stringify(e)}`);
     });
-   //*/
+   */
 
   //console.log(__dirname);
   //console.log(process.cwd());
