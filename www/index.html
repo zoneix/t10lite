@@ -11,6 +11,7 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="css/bulma.min.css">
+        <link rel="stylesheet" href="css/all.css">
         <script>
             function loadScriptSync (src) {
                 var s = document.createElement('script');
@@ -47,19 +48,23 @@
         <![endif]-->
         <div id = "control_panel" class="container" style="height: 375px;">
             <div id = "usb_tab" class="is-hidden field is-grouped is-grouped-centered pt-6">
-                <img src="USB_icon.svg" style="height: 20px;" class="m-2">
-                <button class="button" id="webcam_indicator" disabled>USB</button>
+                
+                <button class="button" id="usb_button" disabled><img src="USB_icon.svg" style="height: 20px;"></button>
+                <button class="button ml-6 is-info" id="vol_dn_button" ><i class="fas fa-volume-down"></i></button>
+                <button class="button ml-2 is-info" id="vol_up_button" ><i class="fas fa-volume-up"></i></button>
+                
             </div>
             <div id = "make_call_tab" class="is-hidden field is-grouped is-grouped-centered pt-6">
                 <input id="sipuri" class="input m-1" type="email" placeholder="e.g. user@domain.com" style="width: 250px;">
-                <button class="button m-1 is-success" id="dial_button">Dial</button>
+                <button class="button m-1 is-success" id="dial_button">Call</button>
             </div>
             <div id = "in_call_tab" class="is-hidden field is-grouped is-grouped-centered pt-6">
                 <button class="button m-1 is-light" id="mute_button">Mute</button>
-                <button class="button m-1 is-danger" id="hangup_button">Hangup</button>
+                <button class="button m-1 is-danger" id="hangup_button">End</button>
             </div>
             <div id = "accept_call_tab" class="is-hidden field is-grouped is-grouped-centered pt-6">
                 <button class="button m-1 is-success" id="accept_button">Accept</button>
+                <button class="button m-1 is-danger" id="decline_button">Decline</button>
             </div>
             <form class="container pt-6" id="authenticate" style="width: 300px;">
                 <div class="field">

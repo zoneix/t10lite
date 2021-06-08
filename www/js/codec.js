@@ -34,16 +34,32 @@ document.getElementById('hangup_button').addEventListener('click', e =>{
   codec.Command.Call.Disconnect();
 });
 
+//codec.Command.Call.Reject()
+document.getElementById('decline_button').addEventListener('click', e =>{
+  e.preventDefault();
+  codec.Command.Call.Reject();
+});
+
 //codec.Command.Call.Accept();
 document.getElementById('accept_button').addEventListener('click', e =>{
   e.preventDefault();
   codec.Command.Call.Accept();
 });
 
-//
+//Mute toggle
 document.getElementById('mute_button').addEventListener('click', e =>{
   e.preventDefault();
   codec.Command.Audio.Microphones.ToggleMute();
+});
+
+//Volume
+document.getElementById('vol_up_button').addEventListener('click', e =>{
+  e.preventDefault();
+  codec.Command.Audio.Volume.Increase();
+});
+document.getElementById('vol_dn_button').addEventListener('click', e =>{
+  e.preventDefault();
+  codec.Command.Audio.Volume.Decrease();
 });
 
 
@@ -78,7 +94,7 @@ function codec_connect(i,u,p){
     xapi.Status.Audio.Microphones.Mute
     .on(value => {
       console.log(`Microphone Mute: ${value}`);
-      document.getElementById('log').innerHTML=`Volume: ${value}`;
+      document.getElementById('log').innerHTML=`Mute: ${value}`;
       if (value === 'On'){
         document.getElementById('mute_button').innerHTML=`Unmute`;
         document.getElementById('mute_button').classList.replace('is-light', 'is-danger');
@@ -106,15 +122,15 @@ function codec_connect(i,u,p){
     .get()
     .then(value => {
       webcam_mode = value;
-      console.log(`Got Webcam Mode: ${value}`);
-      value === "Disconnected" ? document.getElementById('webcam_indicator').classList.add('is-danger') : document.getElementById('webcam_indicator').classList.add('is-success');   
+      document.getElementById('log').innerHTML=`Webcam Mode: ${value}`;
+      value === "Disconnected" ? document.getElementById('usb_button').classList.add('is-danger') : document.getElementById('usb_button').classList.add('is-success');   
     });
 
     xapi.Status.Video.Output.Webcam.Mode
     .on(value => {
       webcam_mode = value;
-      console.log(`Webcam Mode: ${value}`);
-      value === "Disconnected" ? document.getElementById('webcam_indicator').classList.replace('is-success', 'is-danger') : document.getElementById('webcam_indicator').classList.replace('is-danger', 'is-success');
+      document.getElementById('log').innerHTML=`Webcam Mode: ${value}`;
+      value === "Disconnected" ? document.getElementById('usb_button').classList.replace('is-success', 'is-danger') : document.getElementById('usb_button').classList.replace('is-danger', 'is-success');
       if (value === "Streaming"){
         document.getElementById("make_call_tab").classList.add('is-hidden');
         document.getElementById('log').innerHTML=`Using device as external webcam`;
@@ -131,7 +147,7 @@ function codec_connect(i,u,p){
       document.getElementById("make_call_tab").classList.add('is-hidden');
       document.getElementById("in_call_tab").classList.remove('is-hidden');
       document.getElementById("accept_call_tab").classList.add('is-hidden');
-      document.getElementById('log').innerHTML=`${JSON.stringify(event)}`;
+      document.getElementById('log').innerHTML=` Answered call ${JSON.stringify(event.CallId)}`;
       incall = true;
     });
 
@@ -158,12 +174,21 @@ function codec_connect(i,u,p){
     //  incall = false;
     });
 
-    /*
+    xapi.Event.OutgoingCallIndication
+    .on((event) => {
+      console.log(`Outbound call in progress`);
+      document.getElementById("make_call_tab").classList.add('is-hidden');
+      document.getElementById("in_call_tab").classList.remove('is-hidden');
+      document.getElementById('log').innerHTML=`Outbound call ${JSON.stringify(event.CallId)} in progress...`;
+    //  incall = false;
+    });
+
+    
     xapi.Event.on((event) => {
       console.log(event);
-      document.getElementById('log').innerHTML=`${JSON.stringify(event)}`;
+      //document.getElementById('log').innerHTML=`${JSON.stringify(event)}`;
     });
-    */
+    
 
     xapi.Status.Audio.Volume.on((event) => {
       console.log(event);
@@ -175,7 +200,7 @@ function codec_connect(i,u,p){
       document.getElementById('log').innerHTML=`${JSON.stringify(event)}`;
     });
 
-    document.getElementById('webcam_indicator').onclick = function() {
+    document.getElementById('usb_button').onclick = function() {
       console.log(webcam_mode);
 
     };
