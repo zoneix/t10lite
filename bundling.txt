@@ -1,0 +1,8 @@
+npm install webex
+npm install -g browserify
+echo "window.webex = require('webex')" > ./index.js
+browserify index.js > bundle.js
+
+Then, just load your bundle using:
+
+<script src="/webex.min.js"></script>

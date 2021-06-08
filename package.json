@@ -1,0 +1,29 @@
+{
+  "name": "t10-lite",
+  "version": "1.0.0",
+  "description": "t10 controller standalone",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": "index.js",
+  "author": "HC",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "http-server": "^0.12.3",
+    "jsxapi": "^5.0.3",
+    "pkg": "^5.2.1",
+    "playwright": "^1.11.1"
+  },
+  "pkg": {
+    "assets": [
+      "www/**/*",
+      "node_modules/**/*"
+    ],
+    "targets": [
+      "latest"
+    ],
+    "outputPath": "dist"
+  }
+}
