@@ -12,6 +12,7 @@
   "dependencies": {
     "express": "^4.17.1",
     "http-server": "^0.12.3",
+    "jsxapi": "^5.0.3",
     "playwright": "^1.11.1"
   },
   "pkg": {
