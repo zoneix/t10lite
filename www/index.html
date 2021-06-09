@@ -39,14 +39,15 @@
             body {
                 -ms-overflow-style: none;  /* IE and Edge */
                 scrollbar-width: none;  /* Firefox */
+                background-image: url('img/bkg2.png');
+                background-size: cover;
             }
         </style>
     </head>
-    <body style="background-image: url('img/bkg-sm.png');">
+    <body>
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-        
         <div id = "control_panel" class="container" style="height: 375px;">
             <button class="button is-hidden is-dark is-small ml-2 mt-2" id="bolt" type="submit" title="Disconnect">
                 <span class="icon is-small has-text-danger">
@@ -98,28 +99,15 @@
                     <div class="control">
                         <button class="button mt-2 is-info" id="codec_connect" type="submit">Connect</button>
                     </div>
-                </div>
-            
-                
+                </div> 
             </form>    
         </div>
-
-
-
-        </div>  
 
         <div class="container is-fluid">
             <div class="notification" style="text-align:center">
                 <h1 style="text-align:center" id="log">Enter Cisco codec information above to get started</h1>
-                
             </div>
-            
-            
         </div>
 
-        
-        
-        <!--script src="bundle3.js" async></script>
-        <script src="codec.js" async></script-->
     </body>
 </html>
