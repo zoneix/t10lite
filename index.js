@@ -11,7 +11,7 @@ const { chromium } = require('playwright');
         devtools: false,
         args: [
             '--app=http://localhost:8081',
-            '--window-size=640,480',
+            '--window-size=769,480',
             '--silent',
             //'--ignore-certificate-errors'
         ]

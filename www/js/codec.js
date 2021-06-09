@@ -10,6 +10,7 @@ function fadeout() {
 */
 
 let webcam_mode, xcodec, codec, incall = false;
+let log = document.getElementById('log');
 
 document.getElementById('authenticate').addEventListener('submit', e =>{
   e.preventDefault();
@@ -136,14 +137,15 @@ function codec_connect(i,u,p){
     xapi.Status.Video.Output.Webcam.Mode
     .on(value => {
       webcam_mode = value;
-      document.getElementById('log').innerHTML=`Webcam Mode: ${value}`;
+      log.innerHTML=`Webcam Mode: ${value}`;
+      console.log(`Webcam Mode: ${value}`);
       value === "Disconnected" ? document.getElementById('usb_button').classList.replace('is-success', 'is-danger') : document.getElementById('usb_button').classList.replace('is-danger', 'is-success');
       if (value === "Streaming"){
         document.getElementById("make_call_tab").classList.add('is-hidden');
-        document.getElementById('log').innerHTML=`Using device as external webcam`;
+        log.innerHTML=`Using device as external webcam`;
       } else if (!incall) {
         document.getElementById("make_call_tab").classList.remove('is-hidden');
-        document.getElementById('log').innerHTML=``;
+        log.innerHTML=``;
       }
        
     });
@@ -189,13 +191,6 @@ function codec_connect(i,u,p){
       document.getElementById('log').innerHTML=`Outbound call ${JSON.stringify(event.CallId)} in progress...`;
       incall = true;
     });
-
-    
-    xapi.Event.on((event) => {
-      console.log(event);
-      //document.getElementById('log').innerHTML=`${JSON.stringify(event)}`;
-    });
-    
 
     xapi.Status.Audio.Volume.on((event) => {
       console.log(event);
