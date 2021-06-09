@@ -46,12 +46,18 @@
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
+        
         <div id = "control_panel" class="container" style="height: 375px;">
+            <button class="button is-hidden is-dark is-small ml-2 mt-2" id="bolt" type="submit" title="Disconnect">
+                <span class="icon is-small has-text-danger">
+                    <i class="fas fa-bolt"></i>
+                </span>
+            </button>
             <div id = "usb_tab" class="is-hidden field is-grouped is-grouped-centered pt-6">
                 
-                <button class="button" id="usb_button" disabled><img src="USB_icon.svg" style="height: 20px;"></button>
-                <button class="button ml-6 is-info" id="vol_dn_button" ><i class="fas fa-volume-down"></i></button>
-                <button class="button ml-2 is-info" id="vol_up_button" ><i class="fas fa-volume-up"></i></button>
+                <button class="button" id="usb_button" disabled title="USB Link"><img src="USB_icon.svg" style="height: 20px;"></button>
+                <button class="button ml-6 is-info" id="vol_dn_button" title="Volume Down"><i class="fas fa-volume-down"></i></button>
+                <button class="button ml-2 is-info" id="vol_up_button" title="Volume Up"><i class="fas fa-volume-up"></i></button>
                 
             </div>
             <div id = "make_call_tab" class="is-hidden field is-grouped is-grouped-centered pt-6">
@@ -90,7 +96,7 @@
 
                 <div class="field is-grouped is-grouped-centered">
                     <div class="control">
-                        <button class="button is-info" id="codec_connect" type="submit">Connect</button>
+                        <button class="button mt-2 is-info" id="codec_connect" type="submit">Connect</button>
                     </div>
                 </div>
             
@@ -103,9 +109,12 @@
         </div>  
 
         <div class="container is-fluid">
-            <div class="notification">
+            <div class="notification" style="text-align:center">
                 <h1 style="text-align:center" id="log">Enter Cisco codec information above to get started</h1>
+                
             </div>
+            
+            
         </div>
 
         

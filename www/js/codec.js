@@ -62,7 +62,11 @@ document.getElementById('vol_dn_button').addEventListener('click', e =>{
   codec.Command.Audio.Volume.Decrease();
 });
 
-
+//Disconnect
+document.getElementById('bolt').addEventListener('click', e =>{
+  e.preventDefault();
+  codec.close();
+});
 
 function codec_connect(i,u,p){
   console.log(`connecting to codec...${i}, ${u}, ${p}`);
@@ -77,6 +81,7 @@ function codec_connect(i,u,p){
     document.getElementById("authenticate").classList.remove('is-hidden');
     document.getElementById("usb_tab").classList.add('is-hidden');
     document.getElementById("make_call_tab").classList.add('is-hidden');
+    document.getElementById("bolt").classList.add('is-hidden');
   })
   .on('close', ()=>{
     console.log(`codec connection closed`);
@@ -84,12 +89,14 @@ function codec_connect(i,u,p){
     document.getElementById("authenticate").classList.remove('is-hidden');
     document.getElementById("usb_tab").classList.add('is-hidden');
     document.getElementById("make_call_tab").classList.add('is-hidden');
+    document.getElementById("bolt").classList.add('is-hidden');
   })
   .on('ready', async (xapi) => {
 
     document.getElementById("authenticate").classList.add('is-hidden');
     document.getElementById("usb_tab").classList.remove('is-hidden');
     document.getElementById("make_call_tab").classList.remove('is-hidden');
+    document.getElementById("bolt").classList.remove('is-hidden');
   
     xapi.Status.Audio.Microphones.Mute
     .on(value => {
@@ -171,7 +178,7 @@ function codec_connect(i,u,p){
       document.getElementById("in_call_tab").classList.add('is-hidden');
       document.getElementById("accept_call_tab").classList.remove('is-hidden');
       document.getElementById('log').innerHTML=`Inbound call from: ${JSON.stringify(event.DisplayNameValue)}`;
-    //  incall = false;
+      incall = true;
     });
 
     xapi.Event.OutgoingCallIndication
@@ -180,7 +187,7 @@ function codec_connect(i,u,p){
       document.getElementById("make_call_tab").classList.add('is-hidden');
       document.getElementById("in_call_tab").classList.remove('is-hidden');
       document.getElementById('log').innerHTML=`Outbound call ${JSON.stringify(event.CallId)} in progress...`;
-    //  incall = false;
+      incall = true;
     });
 
     
