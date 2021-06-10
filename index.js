@@ -1,25 +1,23 @@
 #!/usr/bin/env node
 const path = require('path');
-const { chromium } = require('playwright');
+//const puppeteer = require('puppeteer');
+const { webkit } = require('playwright');
 
-(async () => {
-  
-    ///*
-    const browser = await chromium.launch({
-        //ignoreDefaultArgs: true,
+/*
+(async () => {     
+    const browser = await puppeteer.launch({
         headless: false,
-        devtools: false,
+        slowMo: 250,
+        ignoreHTTPSErrors: true,
         args: [
             '--app=http://localhost:8081',
             '--window-size=769,480',
-            '--silent',
-            //'--ignore-certificate-errors'
         ]
     });
-    //*/
-   
-  
-    /*
+})();
+*/
+
+(async () => {      
     const browser = await webkit.launch({headless: false});
     const page = await browser.newPage();
     await page.setViewportSize({
@@ -33,16 +31,9 @@ const { chromium } = require('playwright');
     browser.on('disconnected', (e) => {
         console.log(`Disconnected ${JSON.stringify(e)}`);
     });
-   */
-
-  //console.log(__dirname);
-  //console.log(process.cwd());
-  //await page.goto(`file:${path.join(__dirname, '/www/index.html')}`);
-  //await page.goto(`file:${path.join(process.cwd(), '/www/index.html')}`);
-  //await page.screenshot({ path: `example.png` });
-  //await browser.close();
-
 })();
+   
+
 
 const express = require('express');
 const app = express();
